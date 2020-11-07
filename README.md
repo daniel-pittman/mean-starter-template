@@ -21,3 +21,6 @@ If you see an error from Heroku saying "match is not defined", try running these
 2. git commit -am 'disable node_modules cache' --allow-empty
 3. git push heroku master
 4. heroku config:set NODE_MODULES_CACHE=true
+
+## Acknowledgements
+This project is based, in part, on the Yeoman Angular Full-Stack Generator: https://angular-fullstack.github.io/
