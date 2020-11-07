@@ -23,4 +23,7 @@ If you see an error from Heroku saying "match is not defined", try running these
 4. heroku config:set NODE_MODULES_CACHE=true
 
 ## Acknowledgements
-This project is based, in part, on the Yeoman Angular Full-Stack Generator: https://angular-fullstack.github.io/
+This project is based, in part, on the [Yeoman Angular Full-Stack Generator:](https://angular-fullstack.github.io/) 
+
+## LICENSE
+This software is licensed under the [FreeBSD License](https://opensource.org/licenses/bsd-license.php) 
