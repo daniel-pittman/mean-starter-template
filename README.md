@@ -1,5 +1,5 @@
 # MEAN stack starter template
-A repository containing a starter Mongodb, Express.js, Angular, and Node.js (MEAN) project for full-stack web development
+A repository containing a starter MongoDB, Express.js, Angular, and Node.js (MEAN) project for full-stack web development
 
 ### Running the Docker containers
 1. Start by installing Docker if you have not already done so: https://docs.docker.com/get-docker/
