@@ -1,5 +1,5 @@
 docker-compose build
 docker-compose up
 
-docker stop web2-nodejs
-docker stop web2-mongodb
+docker stop mean-nodejs
+docker stop mean-mongodb

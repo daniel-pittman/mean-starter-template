@@ -9,7 +9,7 @@ after(function() {
       mongoose.connection.close(resolve);
     }),
     new Promise(resolve => {
-      app.web2.close(resolve);
+      app.mean.close(resolve);
     }),
 
   ]);

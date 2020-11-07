@@ -1,1 +1,1 @@
-docker exec -it web2-nodejs /bin/bash
+docker exec -it mean-nodejs /bin/bash
