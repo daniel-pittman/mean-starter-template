@@ -4,7 +4,7 @@ A repository containing a starter MongoDB, Express.js, Angular, and Node.js (MEA
 ### Running the Docker containers
 1. Start by installing Docker if you have not already done so: https://docs.docker.com/get-docker/
     1. NOTE: On Windows 10 Home you may have to install an older version of Docker called Docker Toolbox: https://github.com/docker/toolbox
-2. After installing docker, start the necessary containers for the project by running the scripts/start_container script appropriate for your operating system
+2. After installing Docker, start the necessary containers for the project by running the scripts/start_container script appropriate for your operating system
 
 ### Developing
 
