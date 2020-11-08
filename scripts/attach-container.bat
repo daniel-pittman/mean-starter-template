@@ -1,1 +1,1 @@
-docker exec -it mean-nodejs /bin/bash
+docker exec -it mean-template-nodejs /bin/bash

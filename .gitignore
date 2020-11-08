@@ -6,7 +6,7 @@ public
 client/bower_components
 client/index.html
 dist
-/server/config/local.env.js
+/server/config/environment/local.js
 npm-debug.log
 coverage
 .DS_Store
@@ -18,3 +18,4 @@ coverage
 data/
 client/app.html
 *.log
+package-lock.json

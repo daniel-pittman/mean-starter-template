@@ -1,4 +1,3 @@
-// Generated on 2019-07-29 using generator-angular-fullstack 5.0.0-rc.4
 import _ from 'lodash';
 import del from 'del';
 import gulp from 'gulp';
@@ -25,7 +24,7 @@ const serverPath = 'server';
 const paths = {
     client: {
         assets: `${clientPath}/assets/**/*`,
-        images: `${clientPath}/assets/images/**/*`,
+        images: `${clientPath}/assets/**/*.{png,jpg,jpeg,gif,svg}`,
         revManifest: `${clientPath}/assets/rev-manifest.json`,
         scripts: [
             `${clientPath}/**/!(*.spec|*.mock).ts`
@@ -42,7 +41,7 @@ const paths = {
           `${serverPath}/**/!(*.spec|*.integration).js`,
           `!${serverPath}/config/local.env.sample.js`
         ],
-        json: [`${serverPath}/**/*.json`],
+        json: `${serverPath}/**/*.json`,
         test: {
           integration: [`${serverPath}/**/*.integration.js`, 'mocha.global.js'],
           unit: [`${serverPath}/**/*.spec.js`, 'mocha.global.js']
@@ -227,7 +226,7 @@ gulp.task('styles', () => {
 });
 
 gulp.task('transpile:server', () => {
-    return gulp.src(_.union(paths.server.scripts, paths.server.json))
+    return gulp.src(_.union(paths.server.scripts))
         .pipe(transpileServer())
         .pipe(gulp.dest(`${paths.dist}/${serverPath}`));
 });
@@ -265,13 +264,6 @@ gulp.task('jscs', () => {
 
 gulp.task('clean:tmp', () => del(['.tmp/**/*'], {dot: true}));
 
-gulp.task('start:server', () => {
-    process.env.NODE_ENV = process.env.NODE_ENV || 'development';
-    config = require(`./${serverPath}/config/environment`);
-    nodemon(`-w ${serverPath} ${serverPath}`)
-        .on('log', onServerLog);
-});
-
 gulp.task('start:server:prod', () => {
     process.env.NODE_ENV = process.env.NODE_ENV || 'production';
     config = require(`./${paths.dist}/${serverPath}/config/environment`);
@@ -285,18 +277,6 @@ gulp.task('start:server:debug', () => {
     // nodemon(`-w ${serverPath} --debug=5858 --debug-brk ${serverPath}`)
     nodemon(`-w ${serverPath} --inspect --debug-brk ${serverPath}`)
         .on('log', onServerLog);
-});
-
-gulp.task('watch', () => {
-    var testFiles = _.union(paths.client.test, paths.server.test.unit, paths.server.test.integration);
-
-    plugins.watch(_.union(paths.server.scripts, testFiles))
-        .pipe(plugins.plumber())
-        .pipe(lintServerScripts());
-
-    plugins.watch(_.union(paths.server.test.unit, paths.server.test.integration))
-        .pipe(plugins.plumber())
-        .pipe(lintServerTestScripts());
 });
 
 gulp.task('test', cb => {
@@ -359,13 +339,24 @@ gulp.task('coverage:integration', () => {
 // Downloads the selenium webdriver
 gulp.task('webdriver_update', webdriver_update);
 
-gulp.task('test:e2e', ['webpack:dist', 'env:all', 'env:test', 'webdriver_update', 'start:server:prod'], cb => {
+gulp.task('test:e2e:execute', cb => {
     gulp.src(paths.client.e2e)
         .pipe(protractor({
             configFile: 'protractor.conf.js',
         }))
         .on('error', e => { throw e })
-        .on('end', () => { process.exit() });
+        .on('end', () => { process.exit() })
+});
+gulp.task('test:e2e', cb => {
+    runSequence(
+        'build',
+        'env:all',
+        'env:test',
+        'start:server:prod',
+        'webdriver_update',
+        'test:e2e:execute',
+        cb
+    );
 });
 
 gulp.task('test:client', done => {
@@ -408,14 +399,14 @@ gulp.task('clean:dist', () => del([`${paths.dist}/!(.git*|.openshift|Procfile)**
 
 gulp.task('build:images', () => {
     return gulp.src(paths.client.images)
-         .pipe(plugins.imagemin([
-             plugins.imagemin.optipng({optimizationLevel: 5}),
-             plugins.imagemin.jpegtran({progressive: true}),
-             plugins.imagemin.gifsicle({interlaced: true}),
-             plugins.imagemin.svgo({plugins: [{removeViewBox: false}]})
-         ]))
+        // .pipe(plugins.imagemin([
+        //     plugins.imagemin.optipng({optimizationLevel: 5}),
+        //     plugins.imagemin.jpegtran({progressive: true}),
+        //     plugins.imagemin.gifsicle({interlaced: true}),
+        //     plugins.imagemin.svgo({plugins: [{removeViewBox: false}]})
+        // ]))
         .pipe(plugins.rev())
-        .pipe(gulp.dest(`${paths.dist}/${clientPath}/assets/images`))
+        .pipe(gulp.dest(`${paths.dist}/${clientPath}/assets`))
         .pipe(plugins.rev.manifest(`${paths.dist}/${paths.client.revManifest}`, {
             base: `${paths.dist}/${clientPath}/assets`,
             merge: true
@@ -474,7 +465,8 @@ gulp.task('copy:assets', () => {
 
 gulp.task('copy:server', () => {
     return gulp.src([
-        'package.json'
+        'package.json',
+        paths.server.json
     ], {cwdbase: true})
         .pipe(gulp.dest(paths.dist));
 });

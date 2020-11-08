@@ -1,5 +1,5 @@
 {
-    "name": "angular2",
+    "name": "mean-starter-template",
     "version": "0.0.0",
     "main": "server/index.js",
     "dependencies": {
@@ -171,19 +171,16 @@
     },
     "scripts": {
         "build": "if [ \"$NODE_ENV\" != production ]; then gulp build; else exit 0; fi",
-        "build:server": "babel server -d dist/server --ignore spec.js,test.js,integration.js,local.env --source-maps",
         "postinstall": "if [ \"$NODE_ENV\" != production ]; then gulp copy:fonts:dev; else exit 0; fi",
         "lint": "npm run lint:client && npm run lint:server",
         "lint:client": "tslint --format verbose ./client/{**/**,**}/*.ts",
         "lint:server": "eslint ./server/**/*.js -c ./server/.eslintrc --ignore-pattern *.spec.js --ignore-pattern *.integration.js",
-        "test": "gulp test",
         "test:client": "karma start ./karma.conf.js --single-run",
         "test:server": "cross-env NODE_ENV=test ./node_modules/.bin/mocha --reporter spec --timeout 5000 --require ./mocha.conf.js ./server/**/*.{spec,integration}.js mocha.global.js",
         "test:e2e": "gulp test:e2e",
-        "update-webdriver": "node node_modules/protractor/bin/webdriver-manager update",
         "start": "node server",
-        "start:client": "webpack-dev-server --inline --config webpack.dev.js --host 0.0.0.0 --port 8080",
-        "start:server": "NODE_ENV=development nodemon -L --watch server server"
+        "start:client": "until ! pgrep -f '[n]ode /usr/local/bin/yarn install' >/dev/null; do echo 'Waiting for yarn install to finish...'; sleep 2; done; yarn install && webpack-dev-server --inline --config webpack.dev.js --host 0.0.0.0 --port 8080",
+        "start:server": "until ! pgrep -f '[n]ode /usr/local/bin/yarn install' >/dev/null; do echo 'Waiting for yarn install to finish...'; sleep 2; done; yarn install && cp -n server/config/environment/local.sample.js server/config/environment/local.js || true && NODE_ENV=development LOG_LEVEL=trace nodemon -L --watch server --ignore server/config/seed_data/swagger.json server"
     },
     "sideEffects": [
         "*.css",

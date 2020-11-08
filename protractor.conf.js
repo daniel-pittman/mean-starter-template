@@ -11,9 +11,11 @@ var config = {
 
     // A base URL for your application under test. Calls to protractor.get()
     // with relative paths will be prepended with this.
-    baseUrl: 'http://localhost:' + (process.env.PORT || '9001'),
+  baseUrl: `http://mean-template-nodejs:${process.env.PORT || '9001'}`,
 
-    directConnect: true,
+  directConnect: false,
+
+  restartBrowserBetweenTests: true,
 
     // list of files / patterns to load in the browser
     specs: [
@@ -29,19 +31,18 @@ var config = {
     // https://code.google.com/p/selenium/wiki/DesiredCapabilities
     // and
     // https://code.google.com/p/selenium/source/browse/javascript/webdriver/capabilities.js
-    capabilities: {
-        'browserName': 'chrome',
-        'name': 'Fullstack E2E',
-        'chromeOptions': {
-            'args': [
-                'show-fps-counter=true',
-                '--disable-web-security',
-                '--disable-gpu',
-                '--disable-infobars',
-                '--disable-dev-shm-usage'
-            ]
-        },
-    },
+    multiCapabilities: [{
+        browserName: 'chrome',
+        seleniumAddress: 'http://mean-template-selenium-chrome:4444/wd/hub',
+        chromeOptions: {
+        args: [
+            '--disable-gpu',
+        ]},
+        pageLoadingStrategy: 'eager'
+    }, {
+        browserName: 'firefox',
+        seleniumAddress: 'http://mean-template-selenium-firefox:4444/wd/hub'
+    }],
 
     // ----- The test framework -----
     //
@@ -62,7 +63,7 @@ var config = {
         serverConfig: require('./server/config/environment')
     },
 
-    beforeLaunch: function() {
+  beforeLaunch() {
         require('babel-register');
         // Load Mocha and Chai + plugins
         require('./mocha.conf');

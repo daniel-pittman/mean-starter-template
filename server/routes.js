@@ -6,6 +6,9 @@ import errors from './components/errors';
 import path from 'path';
 
 export default function(app) {
+    // Custom API routes go here
+    app.use('/api/thing', require('./api/thing'));
+
     // All undefined asset or api routes should return a 404
     app.route('/:url(api|auth|components|app|bower_components|assets)/*')
         .get(errors[404]);
