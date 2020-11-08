@@ -13,10 +13,10 @@ A repository containing a starter MongoDB, Express.js, Angular, and Node.js (MEA
 2. Navigate to the /app/meantemplate directory. This will be where the source code of the project will be shared into the Docker container
 3. Run `yarn install` to install server dependencies.
 4. Run `npm run start:server` to start the development server. 
-    4.1 You can access the Express.js API via localhost:9000 on your local machine
+    1. You can access the Express.js API via localhost:9000 on your local machine
 5. In a new terminal, run another instance of scripts/attach_container and run `npm run start:client` to run the development client application inside the 
 /app/meantemplate directory.
-5.1. You can access the Angluar application via localhost:8080 in a browser on your local machine
+    1. You can access the Angluar application via localhost:8080 in a browser on your local machine
 
 ## Build & development
 
