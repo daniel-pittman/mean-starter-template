@@ -3,7 +3,7 @@ A repository containing a starter MongoDB, Express.js, Angular, and Node.js (MEA
 
 ### Running the Docker containers
 1. Start by installing Docker if you have not already done so: https://docs.docker.com/get-docker/
-  1.1 NOTE: On Windows 10 Home you may have to install an older version of Docker called Docker Toolbox: https://github.com/docker/toolbox
+1.1. NOTE: On Windows 10 Home you may have to install an older version of Docker called Docker Toolbox: https://github.com/docker/toolbox
 2. After installing docker, start the necessary containers for the project by running the scripts/start_container script appropriate for your operating system
 
 ### Developing
@@ -13,10 +13,10 @@ A repository containing a starter MongoDB, Express.js, Angular, and Node.js (MEA
 2. Navigate to the /app/meantemplate directory. This will be where the source code of the project will be shared into the Docker container
 3. Run `yarn install` to install server dependencies.
 4. Run `npm run start:server` to start the development server. 
-  4.1 You can access the Express.js API via localhost:9000 on your local machine
+4.1. You can access the Express.js API via localhost:9000 on your local machine
 5. In a new terminal, run another instance of scripts/attach_container and run `npm run start:client` to run the development client application inside the 
 /app/meantemplate directory.
-5.1 You can access the Angluar application via localhost:8080 in a browser on your local machine
+5.1. You can access the Angluar application via localhost:8080 in a browser on your local machine
 
 ## Build & development
 
