@@ -1,21 +1,29 @@
-FROM node:10.16.0-stretch
+FROM node:10-stretch
+
+# Set up repo for MongoDB client
+RUN wget -qO - https://www.mongodb.org/static/pgp/server-4.4.asc | apt-key add -
+RUN echo "deb http://repo.mongodb.org/apt/debian stretch/mongodb-org/4.4 main" | tee /etc/apt/sources.list.d/mongodb-org-4.4.list
 
 # Install required dependencies
 RUN apt-get update && apt-get install -yq \
+    default-jdk \
+    firefox-esr \
     git-core \
+    gnupg \
     libgconf2-4 \
     libncurses5 \
     libxml2-dev \
     libxslt-dev \
     libz-dev \
-    mongodb-clients \
+    mongodb-org-shell \
     python-pytest \
     unzip \
     xclip \
-    xsel
+    xsel \
+    xvfb
 
 # Update NPM and yarn to latest versions
-RUN npm i npm@latest yarn@latest -g
+RUN npm i npm@latest
 
 # Install Heroku CLI
 RUN npm install -g heroku
