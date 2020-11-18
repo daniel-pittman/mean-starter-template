@@ -16,6 +16,7 @@ RUN apt-get update && apt-get install -yq \
     libxslt-dev \
     libz-dev \
     mongodb-org-shell \
+    mongodb-org-tools \
     python-pytest \
     unzip \
     xclip \
