@@ -1,4 +1,4 @@
-FROM node:10-stretch
+FROM node:14-stretch
 
 # Set up repo for MongoDB client
 RUN wget -qO - https://www.mongodb.org/static/pgp/server-4.4.asc | apt-key add -
@@ -22,7 +22,7 @@ RUN apt-get update && apt-get install -yq \
     xsel \
     xvfb
 
-# Update NPM and yarn to latest versions
+# Update NPM to latest version
 RUN npm i npm@latest
 
 # Install Heroku CLI
