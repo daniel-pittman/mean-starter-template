@@ -10,8 +10,7 @@ dist
 npm-debug.log
 coverage
 .DS_Store
-/client/assets/fonts/bootstrap
-/client/assets/fonts/font-awesome
+/client/assets/fonts
 *.swp
 *.gz
 *.zip

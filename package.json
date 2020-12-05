@@ -5,6 +5,7 @@
     "dependencies": {
         "bluebird": "^3.7.2",
         "body-parser": "^1.19.0",
+        "bootstrap-icons": "^1.1.0",
         "composable-middleware": "^0.3.0",
         "compression": "^1.7.4",
         "connect-mongo": "^3.2.0",
@@ -172,7 +173,7 @@
         "yarn": "^1"
     },
     "resolutions": {
-      "graceful-fs": "4.2.3"
+        "graceful-fs": "4.2.3"
     },
     "scripts": {
         "build": "if [ \"$NODE_ENV\" != production ]; then gulp build; else exit 0; fi",
