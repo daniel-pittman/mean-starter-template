@@ -1,5 +1,7 @@
 #!/bin/bash
 docker-compose build
+docker network create mean-template
+
 docker-compose up
 
 docker stop mean-template-nodejs

@@ -7,7 +7,6 @@ RUN echo "deb http://repo.mongodb.org/apt/debian stretch/mongodb-org/4.4 main" |
 # Install required dependencies
 RUN apt-get update && apt-get install -yq \
     default-jdk \
-    firefox-esr \
     git-core \
     gnupg \
     libgconf2-4 \
