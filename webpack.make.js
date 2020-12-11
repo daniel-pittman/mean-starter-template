@@ -234,6 +234,14 @@ module.exports = function makeWebpackConfig(options) {
                 path.resolve(__dirname, 'client')
             ],
             exclude: [/app\.scss$/]
+        }, {
+          // CSS LOADER
+          test: /\.css$/i,
+          use: [
+            'handlebars-loader',
+            'extract-loader',
+            'css-loader',
+          ],
         }]
     };
 
