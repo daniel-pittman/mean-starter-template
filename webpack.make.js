@@ -395,7 +395,7 @@ module.exports = function makeWebpackConfig(options) {
 
     config.watchOptions = {
       poll: true
-    }
+    };
 
     return config;
 };
