@@ -393,5 +393,9 @@ module.exports = function makeWebpackConfig(options) {
         setImmediate: false,
     };
 
+    config.watchOptions = {
+      poll: true
+    }
+
     return config;
 };
