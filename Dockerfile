@@ -7,6 +7,7 @@ RUN echo "deb http://repo.mongodb.org/apt/debian stretch/mongodb-org/4.4 main" |
 # Install required dependencies
 RUN apt-get update && apt-get install -yq \
     default-jdk \
+    dos2unix \
     git-core \
     gnupg \
     libgconf2-4 \
@@ -32,5 +33,6 @@ RUN npm install -g heroku
 RUN npm install -g gulp
 
 COPY scripts/wait.sh /app/wait.sh
+RUN dos2unix /app/wait.sh && chmod a+x /app/wait.sh
 
 ENTRYPOINT ["/app/wait.sh"]
