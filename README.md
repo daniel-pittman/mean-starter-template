@@ -26,12 +26,12 @@ A repository containing a starter MongoDB, Express.js, Angular, and Node.js (MEA
  system
    - `scripts/attach_container` for macOS and Linux
    - `scripts/attach_container.bat` for Windows
-1. Navigate to the /app/meantemplate directory. This will be where the source code of the project will be shared into the Docker container
+1. Navigate to the `/app/meantemplate` directory. This will be where the source code of the project will be shared into the Docker container
 1. Run `yarn install` to install server dependencies.
 1. Run `npm run start:server` to start the development server. 
     1. You can access the Express.js API via http://localhost:9000 on your local machine
 1. In a new terminal, run another instance of `scripts/attach_container` and run `npm run start:client` to run the development client application inside the 
-/app/meantemplate directory.
+`/app/meantemplate` directory.
     1. You can access the Angular application via http://localhost:8080 in a browser on your local machine
 
 ## Build & development
