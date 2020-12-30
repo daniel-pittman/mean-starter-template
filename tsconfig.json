@@ -25,7 +25,8 @@
     "node_modules",
     "client/**/*.spec.ts",
     "lectures/**/*",
-    "labs/**/*"
+    "labs/**/*",
+    "dist"
   ],
   "filesGlob": [
     "client/{app,components}/**/!(*.spec).ts"
