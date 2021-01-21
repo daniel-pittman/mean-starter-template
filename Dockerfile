@@ -1,5 +1,12 @@
 FROM node:14-stretch
 
+# Update installation repositories to add additional mirrors for stretch
+RUN echo \
+       'deb ftp://ftp.us.debian.org/debian/ stretch main\n \
+        deb ftp://ftp.us.debian.org/debian/ stretch-updates main\n \
+        deb http://security.debian.org stretch/updates main\n' \
+        > /etc/apt/sources.list
+
 # Install common installation dependencies
 RUN apt-get update && apt install -yq apt-transport-https ca-certificates wget dirmngr gnupg software-properties-common
 
