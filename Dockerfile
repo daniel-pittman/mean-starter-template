@@ -1,12 +1,19 @@
 FROM node:14-stretch
 
+# Install common installation dependencies
+RUN apt-get update && apt install -yq apt-transport-https ca-certificates wget dirmngr gnupg software-properties-common
+
 # Set up repo for MongoDB client
 RUN wget -qO - https://www.mongodb.org/static/pgp/server-4.4.asc | apt-key add -
 RUN echo "deb http://repo.mongodb.org/apt/debian stretch/mongodb-org/4.4 main" | tee /etc/apt/sources.list.d/mongodb-org-4.4.list
 
+# Set up repo for OpenJDK
+RUN wget -qO - https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public | apt-key add -
+RUN add-apt-repository --yes https://adoptopenjdk.jfrog.io/adoptopenjdk/deb/
+
 # Install required dependencies
 RUN apt-get update && apt-get install -yq \
-    default-jdk \
+    adoptopenjdk-11-hotspot \
     dos2unix \
     git-core \
     gnupg \
