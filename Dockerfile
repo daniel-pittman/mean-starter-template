@@ -16,7 +16,6 @@ RUN apt-get update && apt-get install -yq \
     adoptopenjdk-11-hotspot \
     dos2unix \
     git-core \
-    gnupg \
     libgconf2-4 \
     libncurses5 \
     libxml2-dev \
